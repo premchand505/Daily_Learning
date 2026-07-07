@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SnappyStyles | Luxury Salon & Academy</title>
+    <style>
+        :root {
+            /* Apple/Swiss Style Typography */
+            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            
+            /* Palette - White Luxury */
+            --bg-body: #ffffff;
+            --bg-alt: #f5f5f7; /* Apple light gray */
+            --text-main: #1d1d1f; /* Soft Black */
+            --text-muted: #86868b;
+            --accent: #D4AF37; /* Muted Gold */
+            
+            /* Sharp Edges */
+            --radius: 0px; 
+            
+            /* Layout */
+            --container: 1200px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            line-height: 1.5;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- Typography --- */
+        h1, h2, h3, h4 {
+            font-weight: 600;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+        }
+        
+        p {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        /* --- Animations --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- UI Elements --- */
+        .container {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 40px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border: 1px solid var(--text-main);
+            background: transparent;
+            color: var(--text-main);
+            cursor: pointer;
+            border-radius: var(--radius); /* SQUARE */
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: var(--text-main);
+            color: #fff;
+        }
+
+        .btn-gold {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        
+        .btn-gold:hover {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        /* --- Header --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            padding: 20px 0;
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 500;
+        }
+
+        /* --- Hero --- */
+        .hero {
+            height: 90vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background: #000; /* Fallback */
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.7;
+            transition: transform 10s ease;
+        }
+        
+        /* Subtle zoom effect on load */
+        .hero:hover .hero-bg {
+            transform: scale(1.05);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: #fff;
+            max-width: 800px;
+            padding-left: 10%; /* Asymmetric layout */
+        }
+
+        .hero-content h1 {
+            font-size: 5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 40px;
+            font-size: 1.2rem;
+            max-width: 500px;
+        }
+
+        .hero-btn {
+            border-color: #fff;
+            color: #fff;
+        }
+        .hero-btn:hover { background: #fff; color: #000; }
+
+        /* --- Stats/Intro --- */
+        .intro {
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .intro h2 { font-size: 2.5rem; margin-bottom: 20px; }
+        .intro p { max-width: 600px; margin: 0 auto; }
+
+        /* --- Portfolio Grid (Men, Women, Kids) --- */
+        .portfolio {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            height: 600px; /* Fixed artistic height */
+        }
+
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-right: 1px solid #fff;
+  
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+            filter: grayscale(20%);
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.03);
+            filter: grayscale(0%);
+        }
+
+        .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 40px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: #fff;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+
+        .portfolio-item:hover .overlay {
+            transform: translateY(0);
+        }
+
+        /* --- Interior Showcase --- */
+        .interior-section {
+            padding: 100px 0;
+            background: var(--bg-alt);
+        }
+
+        .interior-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0; /* Seamless */
+        }
+
+        .interior-text {
+            padding: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .interior-img {
+            height: 600px;
+        }
+        
+        .interior-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* --- Academy --- */
+        .academy-section {
+            padding: 120px 0;
+            background: #fff;
+            position: relative;
+        }
+
+        .academy-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .academy-header span {
+            color: var(--accent);
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+        }
+
+        .academy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .course-card {
+            border: 1px solid #eee;
+            padding: 40px;
+            transition: 0.3s;
+        }
+
+        .course-card:hover {
+            border-color: var(--text-main);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+
+        .course-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        /* --- Locations --- */
+        .locations {
+            background: #111;
+            color: #fff;
+            padding: 100px 0;
+        }
+
+        .loc-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px; /* Divider effect */
+            background: #333; /* Color of the gap/border */
+            border: 1px solid #333;
+        }
+
+        .loc-item {
+            background: #111;
+            padding: 40px 20px;
+            text-align: center;
+            transition: background 0.3s;
+        }
+        
+        .loc-item:hover {
+            background: #1a1a1a;
+        }
+
+        .loc-item h4 { color: var(--accent); margin-bottom: 10px; font-size: 1.2rem; }
+        .loc-item a { font-size: 1.1rem; color: #fff; display: block; margin-top: 5px; }
+
+        /* --- Footer --- */
+        footer {
+            padding: 40px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            border-top: 1px solid #eee;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 3rem; }
+            .portfolio { grid-template-columns: 1fr; height: auto; }
+            .portfolio-item { height: 400px; }
+            .interior-grid { grid-template-columns: 1fr; }
+            .interior-text { padding: 40px; }
+            .loc-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container nav-inner">
+            <div class="logo">SnappyStyles</div>
+            <div class="nav-links">
+                <a href="#salon">Salon</a>
+                <a href="#academy">Academy</a>
+                <a href="#locations">Visit Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <img src="https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?q=80&w=2070&auto=format&fit=crop" class="hero-bg" alt="Luxury Salon Interior">
+        <div class="container hero-content reveal">
+            <h1>The Art of<br>Refinement.</h1>
+            <p>Premium unisex grooming and professional academy training. Where luxury meets precision.</p>
+            <a href="#locations" class="btn hero-btn">Book Appointment</a>
+        </div>
+    </section>
+
+    <section class="intro reveal">
+        <div class="container">
+            <h2>Minimalist Luxury</h2>
+            <p>We believe in the power of simplicity. Our spaces are designed to be sanctuaries of calm, and our services are executed with exacting standards.</p>
+        </div>
+    </section>
+
+    <section id="salon" class="reveal">
+        <div class="portfolio">
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=2070&auto=format&fit=crop" alt="Men's Haircut">
+                <div class="overlay">
+                    <h3>Men's Grooming</h3>
+                    <p>Precision fades & beard sculpting</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=2069&auto=format&fit=crop" alt="Women's Haircut">
+                <div class="overlay">
+                    <h3>Women's Styling</h3>
+                    <p>Couture cuts & coloring</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1595760780346-f972eb49f094?q=80&w=2071&auto=format&fit=crop" alt="Kids Haircut">
+                <div class="overlay">
+                    <h3>Kids' Studio</h3>
+                    <p>Gentle care for little ones</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="interior-section">
+        <div class="container">
+            <div class="interior-grid">
+                <div class="interior-text reveal">
+                    <h2>The Experience</h2>
+                    <br>
+                    <p>Our studios are designed with an emphasis on space, light, and comfort. We use premium seating and state-of-the-art equipment to ensure your visit is nothing short of exceptional.</p>
+                    <br>
+                    <a href="#locations" class="btn">Explore Locations</a>
+                </div>
+                <div class="interior-img reveal">
+                    <img src="https://images.unsplash.com/photo-1522337360705-8763d39a97d4?q=80&w=2069&auto=format&fit=crop" alt="Premium Salon Chairs">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="academy" class="academy-section">
+        <div class="container">
+            <div class="academy-header reveal">
+                <span>The Academy</span>
+                <h2>Master the Craft</h2>
+                <p>Professional training for the next generation of stylists.</p>
+            </div>
+            
+            <div class="academy-grid">
+                <div class="course-card reveal">
+                    <h3>Hair Artistry</h3>
+                    <p>Comprehensive training in cutting, coloring, and styling techniques used by top professionals.</p>
+                </div>
+                <div class="course-card reveal">
+                    <h3>Makeup & Skin</h3>
+                    <p>Learn the fundamentals of dermatology and the art of makeup from editorial experts.</p>
+                </div>
+                <div class="course-card reveal">
+                    <h3>Salon Business</h3>
+                    <p>Understand the management, customer service, and operational side of running a luxury brand.</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 60px;" class="reveal">
+                <a href="#locations" class="btn btn-gold">Enroll Now</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="locations" class="locations">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 50px;" class="reveal">
+                <h2>Our Locations</h2>
+            </div>
+            <div class="loc-grid reveal">
+                <div class="loc-item">
+                    <h4>Vadalapudi</h4>
+                    <p>Luxury Studio</p>
+                    <a href="tel:7816023037">7816023037</a>
+                </div>
+                <div class="loc-item">
+                    <h4>Duvvada</h4>
+                    <p>Unisex Salon</p>
+                    <a href="tel:9502398421">9502398421</a>
+                </div>
+                <div class="loc-item">
+                    <h4>Thungalam</h4>
+                    <p>Hair Lounge</p>
+                    <a href="tel:7780489569">7780489569</a>
+                </div>
+                <div class="loc-item">
+                    <h4>Narsipatnam</h4>
+                    <p>Academy Center</p>
+                    <a href="tel:7981758331">7981758331</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 SnappyStyles. Designed for Elegance.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+
+</body>
+</html>

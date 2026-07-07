@@ -1,1 +1,0 @@
-print(safe_divide(10, 2))
